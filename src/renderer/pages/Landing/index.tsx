@@ -82,6 +82,7 @@ export default function Landing() {
                 ping={ping}
                 statusText={statusText}
                 proxyStatus={proxyStatus}
+                proxyMode={proxyMode}
                 appVersion={appVersion}
                 netStats={netStats}
                 dataUsage={dataUsage}

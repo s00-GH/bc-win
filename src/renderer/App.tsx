@@ -1,16 +1,18 @@
 import { MemoryRouter as Router } from 'react-router';
 import { useEffect } from 'react';
 
-import 'assets/css/bootstrap.min.css';
 import 'assets/css/bootstrap-rtl.min.css';
-import 'assets/css/shabnam.css';
+import 'assets/css/bootstrap.min.css';
 import 'assets/css/materialIcons.css';
 import 'assets/css/noto.css';
+import 'assets/css/shabnam.css';
 import 'assets/css/style.css';
+import 'assets/css/theme.css';
 
 import SplashScreen from './pages/SplashScreen';
 import { loadLang, loadTheme, loadSettings } from './lib/loaders';
 import { getIspName } from './lib/getIspName';
+import { clearUpdateNotifOnStartup, loadLang, loadSettings, loadTheme } from './lib/loaders';
 import AppRoutes from './routes';
 
 export default function App() {

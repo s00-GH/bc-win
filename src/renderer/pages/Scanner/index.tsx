@@ -134,10 +134,6 @@ export default function Scanner() {
                             <div className='info'>{appLang?.settings?.scanner_reserved_desc}</div>
                         </div>
                     </div>
-                    <div className='moreSettings'>
-                        <i className='material-icons'>&#xe313;</i>
-                        {appLang?.settings?.more}
-                    </div>
                     <div className='settings'>
                         <div
                             role='button'

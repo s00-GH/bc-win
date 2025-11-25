@@ -23,6 +23,7 @@ import log from 'electron-log';
 //import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 //import debug from 'electron-debug';
 import { rimrafSync } from 'rimraf';
+//import sudo from 'sudo-prompt';
 import sudo from 'sudo-prompt';
 import https from 'https';
 import { networkInterfaces } from 'systeminformation';
@@ -58,12 +59,13 @@ import {
     usqueAssetPath,
     mpPath,
     mpAssetPath,
-    workingDirPath
+    workingDirPath,
+    
 } from '../constants';
 import packageJsonData from '../../package.json';
 import { spawnSync } from 'child_process';
 
-const APP_TITLE = `Oblivion Desktop${isDev() ? ' ᴅᴇᴠ' : ''}`;
+const APP_TITLE = `Borderless Connection${isDev() ? ' ᴅᴇᴠ' : ''}`;
 const WINDOW_DIMENSIONS = {
     width: 400,
     height: 650
@@ -107,6 +109,7 @@ interface WindowState {
     isCheckingForUpdates: boolean;
     checkForUpdatesIntervalId: NodeJS.Timeout | undefined;
     hasNewUpdate: boolean;
+    showAdvancedTray: boolean;
 }
 
 class OblivionDesktop {
@@ -121,7 +124,8 @@ class OblivionDesktop {
         updateNotification: undefined,
         isCheckingForUpdates: false,
         checkForUpdatesIntervalId: undefined,
-        hasNewUpdate: false
+        hasNewUpdate: false,
+        showAdvancedTray: false
     };
 
     constructor() {
@@ -540,7 +544,7 @@ class OblivionDesktop {
                             const launchUpdater = (filePath: string) => {
                                 setTimeout(() => {
                                     const options = {
-                                        name: 'Oblivion Desktop'
+                                        name: 'Borderless Connection'
                                     };
                                     sudo.exec(`"${filePath}"`, options, (error, stdout, stderr) => {
                                         if (error) {
@@ -886,9 +890,20 @@ class OblivionDesktop {
             this.state.appIcon.on('click', () => {
                 this.redirectTo('');
             });
-            /*this.state.appIcon.on('right-click', () => {
+            this.state.appIcon.on('right-click', (event) => {
+                try {
+                    // Determine if Shift key is pressed during right-click
+                    this.state.showAdvancedTray = !!(event && (event as any).shiftKey);
+                } catch {
+                    this.state.showAdvancedTray = false;
+                }
+                this.updateTrayMenu();
                 this.state.appIcon?.popUpContextMenu();
-            });*/
+                // reset after popup
+                setTimeout(() => {
+                    this.state.showAdvancedTray = false;
+                }, 0);
+            });
             this.updateTrayMenu();
         } catch (err) {
             log.error('Error setting up tray:', err);
@@ -1028,6 +1043,7 @@ class OblivionDesktop {
             {
                 label: this.state.appLang.systemTray.about,
                 type: 'normal',
+                visible: this.state.showAdvancedTray,
                 click: () => {
                     this.redirectTo('/about');
                 }
@@ -1035,6 +1051,7 @@ class OblivionDesktop {
             {
                 label: this.state.appLang.systemTray.log,
                 type: 'normal',
+                visible: this.state.showAdvancedTray,
                 click: () => {
                     this.redirectTo('/debug');
                 }

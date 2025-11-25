@@ -168,10 +168,6 @@ export default function Settings() {
                             </div>
                         </div>
                     </div>
-                    <div className='moreSettings'>
-                        <i className='material-icons'>&#xe313;</i>
-                        {appLang?.settings?.more}
-                    </div>
                     <div className='settings' role='menu' tabIndex={0}>
                         <div
                             role='button'

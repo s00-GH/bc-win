@@ -142,10 +142,6 @@ export default function Options() {
                             <div className='info'>{appLang?.settings?.sound_effect_desc}</div>
                         </div>
                     </div>
-                    <div className='moreSettings'>
-                        <i className='material-icons'>&#xe313;</i>
-                        {appLang?.settings?.more_duties}
-                    </div>
                     <div className='settings' role='menu'>
                         <div
                             role='button'
@@ -246,10 +242,6 @@ export default function Options() {
                             </div>
                             <div className='info'>{appLang?.settings?.force_close_desc}</div>
                         </div>
-                    </div>
-                    <div className='moreSettings'>
-                        <i className='material-icons'>&#xe313;</i>
-                        {appLang?.settings?.more}
                     </div>
                     <div className='settings' role='menu'>
                         <div

@@ -20,6 +20,7 @@ interface LandingBodyProps {
     handleOnClickIp: () => void;
     handleOnClickPing: () => void;
     proxyStatus: string;
+    proxyMode: string;
     appVersion: string;
     netStats: INetStats;
     dataUsage: boolean;
@@ -39,6 +40,7 @@ const LandingBody: FC<LandingBodyProps> = ({
     ping,
     statusText,
     proxyStatus,
+    proxyMode,
     appVersion,
     netStats,
     dataUsage

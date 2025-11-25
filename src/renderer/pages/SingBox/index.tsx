@@ -158,10 +158,6 @@ export default function SingBox() {
                             <div className='info'>{appLang.settings.geo_nsfw_block_desc}</div>
                         </div>
                     </div>
-                    <div className='moreSettings'>
-                        <i className='material-icons'></i>
-                        {appLang?.settings?.more_helper}
-                    </div>
                     <div className='settings' role='menu' tabIndex={0}>
                         <div
                             role='button'
@@ -183,10 +179,6 @@ export default function SingBox() {
                             </div>
                             <div className='info'>{appLang.settings.close_helper_desc}</div>
                         </div>
-                    </div>
-                    <div className='moreSettings'>
-                        <i className='material-icons'></i>
-                        {appLang?.settings?.more_duties}
                     </div>
                     <div className='settings' role='menu' tabIndex={0}>
                         <div className={classNames('item')}>
@@ -328,10 +320,6 @@ export default function SingBox() {
                             </div>
                             <div className='info'>{appLang.settings.singbox_udp_block_desc}</div>
                         </div>
-                    </div>
-                    <div className='moreSettings'>
-                        <i className='material-icons'>&#xe313;</i>
-                        {appLang?.settings?.more}
                     </div>
                     <div className='settings' role='menu' tabIndex={0}>
                         <div
